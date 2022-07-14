@@ -29,7 +29,7 @@ const data = [
 ]
 export default function Sidebar() {
   return (
-    <div className="w-[239px] min-h-screen max-h-full shadow-[4px_0px_16px_rgba(30,30,30,0.08)] px-4 pt-4 pb-28">
+    <div className="w-[239px] min-h-screen max-h-full shadow-[4px_0px_16px_rgba(30,30,30,0.08)] px-4 pt-4 pb-28 z-50 ">
       <Logo />
       <div className="mt-10 flex flex-col gap-5">
         <Dashboard />

@@ -3,14 +3,15 @@ import SearchAndSearchPage from '../components/SearchAndSearchPage'
 import mainImg from '../public/images/mainImg.png'
 import Image from 'next/image'
 
-const Home = ({ data }) => {
-  console.table(data)
+const Home = ({ data, searchData }) => {
+  // console.table(data)
+  console.table(searchData)
   return (
     <div className="flex ">
       <Sidebar />
       <div>
         <SearchAndSearchPage data={data} />
-        <div className=" relative h-[1200px] w-[calc(100vw-243px)] max-w-[1409px] mx-auto">
+        <div className=" relative h-[1200px] w-[calc(100vw-243px)] max-w-[1409px] mx-auto -z-30">
           <Image src={mainImg} layout="fill" objectFit="cover" />
         </div>
       </div>
@@ -24,6 +25,7 @@ export async function getServerSideProps() {
   const res = await fetch(
     `https://tva.staging.b2brain.com/search/autocomplete_org_all/`,
   )
+
   const data = await res.json()
 
   return { props: { data } }
