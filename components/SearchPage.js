@@ -5,7 +5,7 @@ import { AiOutlineDoubleLeft, AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 export default function SearchPage({ data }) {
   return (
-    <div className=" -z-10 min-h-screen h-[600px] max-h-fit w-full  bg-white pt-12 pl-14 flex justify-between ">
+    <div className=" -z-10  h-[600px] max-h-fit w-full  bg-white pt-12 pl-14 flex justify-between ">
       <div>
         <h2 className="text-[22px] font-bold text-[#808080] mb-5 ">
           Similar accounts
