@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { useState } from 'react'
 import { AiOutlineDoubleLeft, AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-export default function SearchPage({ data, filterSearch }) {
+export default function SearchPage({ data }) {
   return (
     <div className="absolute -z-10 min-h-screen max-h-full w-full  bg-white pt-12 pl-14 flex justify-between">
       <div>
@@ -14,7 +14,6 @@ export default function SearchPage({ data, filterSearch }) {
           {data.map((data, index) => (
             <AccountCard
               key={index}
-              logo={data.lo}
               name={data.company}
               website={data.website}
             />

@@ -2,12 +2,12 @@ import { useState } from 'react'
 import sampleImg from '../public/images/sampleImg.png'
 import Image from 'next/image'
 import classnames from 'classnames'
-export default function AccountCard({ name, website, logo }) {
+export default function AccountCard({ name, website }) {
   const [tracking, setTracking] = useState(false)
   return (
     <div className="flex items-center justify-between w-[375px]">
       <div className="flex  gap-6 items-center">
-        <Image src={logo || sampleImg} height={50} width={50} />
+        <Image src={sampleImg} height={50} width={50} />
         <div className="flex flex-col">
           <h2 className="font-bold">{name}</h2>
           <p className="text-xs text-[#808080]">{website}</p>

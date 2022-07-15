@@ -5,11 +5,7 @@ import { RiCloseFill } from 'react-icons/ri'
 import sampleImg from '../public/images/sampleImg.png'
 import Image from 'next/image'
 import SearchPage from './SearchPage'
-export default function SearchAndSearchPage({
-  renderData,
-  filterSearch,
-  setSearchValue,
-}) {
+export default function SearchAndSearchPage({ renderData, setSearchValue }) {
   const [searchOpen, setSearchOpen] = useState(false)
   return (
     <div className="relative z-10">
@@ -38,9 +34,7 @@ export default function SearchAndSearchPage({
         <Bell />
         <Image src={sampleImg} className="rounded" height={25} width={25} />
       </div>
-      {searchOpen && (
-        <SearchPage filterSearch={filterSearch} data={renderData} />
-      )}
+      {searchOpen && <SearchPage data={renderData} />}
     </div>
   )
 }

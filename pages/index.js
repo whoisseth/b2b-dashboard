@@ -5,45 +5,35 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 const Home = ({ data }) => {
-  // console.table(data)
   let filterSearch
   console.table(data)
-  //
 
   const [searchValue, setSearchValue] = useState('')
   const [searchData, setSearchData] = useState([])
-  // const getData =
-  useEffect(() => {
-    ;(async () => {
-      const url = `https://tva.staging.b2brain.com/search/autocomplete_org_all/?q=${searchValue}`
-      const res = await fetch(url)
-      const searchAPI = await res.json()
-      setSearchData(searchAPI)
-    })()
-    // getData(searchValue)
-  }, [searchValue])
-  console.log(searchData)
-  if (searchData) {
-    filterSearch = searchData.filter((searchData) =>
-      searchData
-        ? searchData.company
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase()) ||
-          searchData.slug
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase()) ||
-          searchData.website
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase())
-        : searchData,
-    )
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      ;(async () => {
+        const res = await fetch(
+          `https://tva.staging.b2brain.com/search/autocomplete_org_all/?q=${searchValue}`,
+          {
+            method: 'GET',
+          },
+        )
+        const searchAPI = await res.json()
+        setSearchData(searchAPI)
+      })()
+    }, [searchValue])
   }
-  const renderData = filterSearch.length > 0 ? filterSearch : data
+
+  console.log(searchData)
+
+  const renderData = searchData.length > 0 ? searchData : data
   return (
     <div className="flex ">
       <Sidebar />
       <div>
         <SearchAndSearchPage
+          data={data}
           filterSearch={filterSearch}
           renderData={renderData}
           setSearchValue={setSearchValue}
@@ -67,3 +57,19 @@ export async function getServerSideProps() {
 
   return { props: { data } }
 }
+
+// if (searchData) {
+//   filterSearch = searchData.filter((searchData) =>
+//     searchData
+//       ? searchData.company
+//           .toLowerCase()
+//           .includes(searchValue.toLocaleLowerCase()) ||
+//         searchData.slug
+//           .toLowerCase()
+//           .includes(searchValue.toLocaleLowerCase()) ||
+//         searchData.website
+//           .toLowerCase()
+//           .includes(searchValue.toLocaleLowerCase())
+//       : searchData,
+//   )
+// }
