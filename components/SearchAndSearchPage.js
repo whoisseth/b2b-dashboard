@@ -10,14 +10,15 @@ export default function SearchAndSearchPage({ data }) {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
   const [searchData, setSearchData] = useState([])
-  const getData = async (searchValue) => {
-    const url = `https://tva.staging.b2brain.com/search/autocomplete_org_all/?q=${searchValue}`
-    const res = await fetch(url)
-    const searchAPI = await res.json()
-    setSearchData(searchAPI)
-  }
+  // const getData =
   useEffect(() => {
-    getData(searchValue)
+    ;(async () => {
+      const url = `https://tva.staging.b2brain.com/search/autocomplete_org_all/?q=${searchValue}`
+      const res = await fetch(url)
+      const searchAPI = await res.json()
+      setSearchData(searchAPI)
+    })()
+    // getData(searchValue)
   }, [searchValue])
   console.log(searchData)
   if (searchData) {
@@ -36,7 +37,7 @@ export default function SearchAndSearchPage({ data }) {
     )
   }
 
-  const renderData = filterSearch || data
+  const renderData = filterSearch.length > 0 ? filterSearch : data
   return (
     <div className="relative z-10">
       <div className="flex items-center w-[calc(100vw-243px)]  h-[60px] shadow-[4px_0px_16px_10px_rgba(30,30,30,0.08)] gap-5  pr-10 z-50  ">

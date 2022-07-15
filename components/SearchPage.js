@@ -11,13 +11,6 @@ export default function SearchPage({ data, filterSearch }) {
           Similar accounts
         </h2>
         <div className="flex flex-wrap  gap-10 mb-40 max-w-[800px] ">
-          {filterSearch && filterSearch.length == 0 && (
-            <div className="font-bold text-3xl flex ">
-              <span> Searching</span>
-              <AiOutlineLoading3Quarters className="ml-2 animate-spin" />
-              <span>... Or No Search Result</span>
-            </div>
-          )}
           {data.map((data, index) => (
             <AccountCard
               key={index}
@@ -62,3 +55,11 @@ function RightSidebar() {
     </>
   )
 }
+
+// {filterSearch && filterSearch.length == 0 && (
+//   <div className="font-bold text-3xl   hidden">
+//   <span> Searching</span>
+//   <AiOutlineLoading3Quarters className="ml-2 animate-spin" />
+//   <span>No Search found</span>
+// </div>
+// )}
