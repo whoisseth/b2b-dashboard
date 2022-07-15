@@ -5,39 +5,12 @@ import { RiCloseFill } from 'react-icons/ri'
 import sampleImg from '../public/images/sampleImg.png'
 import Image from 'next/image'
 import SearchPage from './SearchPage'
-export default function SearchAndSearchPage({ data }) {
-  let filterSearch
+export default function SearchAndSearchPage({
+  renderData,
+  filterSearch,
+  setSearchValue,
+}) {
   const [searchOpen, setSearchOpen] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
-  const [searchData, setSearchData] = useState([])
-  // const getData =
-  useEffect(() => {
-    ;(async () => {
-      const url = `https://tva.staging.b2brain.com/search/autocomplete_org_all/?q=${searchValue}`
-      const res = await fetch(url)
-      const searchAPI = await res.json()
-      setSearchData(searchAPI)
-    })()
-    // getData(searchValue)
-  }, [searchValue])
-  console.log(searchData)
-  if (searchData) {
-    filterSearch = searchData.filter((searchData) =>
-      searchData
-        ? searchData.company
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase()) ||
-          searchData.slug
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase()) ||
-          searchData.website
-            .toLowerCase()
-            .includes(searchValue.toLocaleLowerCase())
-        : searchData,
-    )
-  }
-
-  const renderData = filterSearch.length > 0 ? filterSearch : data
   return (
     <div className="relative z-10">
       <div className="flex items-center w-[calc(100vw-243px)]  h-[60px] shadow-[4px_0px_16px_10px_rgba(30,30,30,0.08)] gap-5  pr-10 z-50  ">
