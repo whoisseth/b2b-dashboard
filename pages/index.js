@@ -1,13 +1,15 @@
 import Sidebar from '../components/Sidebar'
-import SearchAndSearchPage from '../components/SearchAndSearchPage'
+import SearchAndSearchPage from '../components/Search'
 import mainImg from '../public/images/mainImg.png'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import SearchPage from './../components/SearchPage'
+import Search from '../components/Search'
 
 const Home = ({ data }) => {
   let filterSearch
   console.table(data)
-
+  const [searchOpen, setSearchOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
   const [searchData, setSearchData] = useState([])
   if (typeof window !== 'undefined') {
@@ -32,14 +34,20 @@ const Home = ({ data }) => {
     <div className="flex ">
       <Sidebar />
       <div>
-        <SearchAndSearchPage
-          data={data}
-          filterSearch={filterSearch}
-          renderData={renderData}
-          setSearchValue={setSearchValue}
-        />
-        <div className=" relative h-[1200px] w-[calc(100vw-243px)] max-w-[1409px] mx-auto -z-30">
-          <Image src={mainImg} layout="fill" objectFit="cover" />
+        <div className=" z-10  ">
+          <Search
+            data={data}
+            searchOpen={searchOpen}
+            setSearchOpen={setSearchOpen}
+            filterSearch={filterSearch}
+            setSearchValue={setSearchValue}
+          />
+          {searchOpen && <SearchPage data={renderData} />}
+          {!searchOpen && (
+            <div className=" relative h-[1200px] w-[calc(100vw-243px)] max-w-[1409px] mx-auto -z-30">
+              <Image src={mainImg} layout="fill" objectFit="cover" />
+            </div>
+          )}
         </div>
       </div>
     </div>
